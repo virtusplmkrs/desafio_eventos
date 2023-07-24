@@ -1,0 +1,51 @@
+{% extends 'eventos/base.html' %}
+
+
+{% block content %}
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <div class='row text-center'>
+        <h2>Meus Eventos</h2>
+        <br/><br/></br>
+        <ul>
+            {% for evento in eventos %}
+                
+                <div class="card">
+                    <div class="card-header">
+                        {{ evento }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Local: {{ evento.local }}</h5>
+                        <p class="card-text">
+                            <strong>De: </strong>{{ evento.data_evento }} <strong> a </strong>{{ evento.data_final }}<br/>
+                            <strong>Dias para o Evento: </strong>{{ evento.Is_Past }}{{ evento.Days_till }}<br/>
+                            <strong>Home: </strong>{{ evento.local.web }}<br/>
+                            <strong>Contato: </strong>{{ evento.promoter }}<br/>
+                            <strong>Descrição: </strong>{{ evento.descricao }}<br/>
+                            <strong>Participantes:</strong>
+                            <BR/>
+                            {% for user in evento.participantes.all %}
+                                {{ user }}
+                                <BR/> 
+                            {% endfor%}
+                            <br/>
+                        </p>
+                    </div>
+                    {% if user.is_authenticated %}
+                        {% if user == evento.promoter %}
+                            <div class="card-footer text-muted">
+                                <a href="{% url 'update-evento' evento.id %}" class="btn btn-outline-secondary btn-sm">Atualizar Evento</a>
+                                <a href="{% url 'delete-evento' evento.id %}" class="btn btn-outline-danger btn-sm">Excluir Evento</a>
+                            </div>
+                        {% else %}
+                            <div class="card-body text-muted">
+                                <p class="card-text">  Autor: {{ evento.promoter }}</p>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <br/>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content%}

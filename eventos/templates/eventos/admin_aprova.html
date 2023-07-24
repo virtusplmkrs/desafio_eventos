@@ -1,0 +1,87 @@
+{% extends 'eventos/base.html' %}
+
+
+{% block content %}
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <div class='row text-center'>
+        <h1>Eventos Dashboard</h1>
+        <form action="" method=POST>
+            {% csrf_token %}
+            <br/>
+
+            <div class="card">
+                <div class="card-header">
+                  Eventos - Locais / Totais
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Eventos: {{ evento_count }}</p>
+                  <p class="card-text">Local: {{ local_count }}</p>
+                </div>
+            </div>
+            <br/><br/>
+            <h1>xxxxxx</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Local</th>
+                        <th scope="col">Evento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for local in list_local %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'ficha-local'  local.id %}">{{ local }}</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'local-evento'  local.id %}">Listar</a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br/>
+
+
+            <h1>Eventos Aprovados</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Evento</th>
+                        <th scope="col">Data do Evento</th>
+                        <th scope="col">Local</th>
+                        <th scope="col">Aprovado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evento in evento_list %}
+                    <tr>
+                        <td>{{ evento }}</td>
+                        <td>{{ evento.data_evento }}</td>
+                        <td>{{ evento.local }}</td>
+                        <td>
+                            {% if evento.aprovado %}
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                    type="checkbox" checked="checked"
+                                    value={{evento.id}} name="boxes">
+                                </div>
+                            {% else %}
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                    type="checkbox" value={{evento.id}} name='boxes'>
+                                </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br/>
+            <button class='btn btn-secondary' type="submit">Atualizar</button>
+            <hr/>
+        <p>Alexandre Yuri {{ current_year }}</p>
+    </div>
+</div>
+{% endblock content%}

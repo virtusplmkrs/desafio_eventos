@@ -1,0 +1,22 @@
+{% extends 'eventos/base.html' %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Atualiza Registro</h1>
+        <br/>
+        <form action ="" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br/>
+            <input type="submit" value="Update"
+            class="btn btn-dark">
+    {% else %}
+            <h1>Desculpe! Você não tem permissão, você precisa estar logado.</h1>
+            <br/><br/>
+            <a href="{% url 'login' %}"> Faça seu Login</a>
+            <br/><br/>
+            <a href="{% url 'home' %}"> Voltar para página inicial</a>
+            <br/><br/>
+    {% endif %}        
+{% endblock content%}

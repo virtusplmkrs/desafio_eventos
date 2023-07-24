@@ -1,0 +1,29 @@
+{% extends 'eventos/base.html' %}
+
+
+{% block content %}
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <div class="card">
+        <div class="card-header">
+            Ficha Cadastral
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ local.nome }}</h5>
+          <p class="card-text">
+
+            {{ local.endereco }}<br/>
+            {{ local.cep }}<br/>
+            {{ local.fone }}<br/>
+            {{ local.email }}<br/>
+            <a href="{{ local.web }}">{{ local.web }}</a><br/>
+            <br/>
+            Proprietário: {{ local_prop }}<br/>
+            Proprietário: {{ local_prop.email }}<br/>
+          </p>
+          <a href="{% url 'update-local' local.id %}" class="btn btn-dark">Alterar</a>
+        </div>
+    </div>
+    <br/>
+    <br/>
+  </div>
+{% endblock content%}

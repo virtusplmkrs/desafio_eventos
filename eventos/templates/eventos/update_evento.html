@@ -1,0 +1,31 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<div class="shadow p-4 mb-5 bg-body rounded">
+    {% if user.is_authenticated %}
+        <h1>Atualiza Registro</h1>
+        {% if user == evento.promoter %}
+            <form action ="" method=POST>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br/>
+                <input type="submit" value="Update"
+                class="btn btn-dark">
+        {% else %}
+                <h1>Acesso negado</h1>
+                <p>Somente o Autor pode atualizar</p>
+                Usuário logado: {{ user }}
+                <br/>
+                Autor: {{ evento.promoter }}
+                <br/>
+        {% endif %}
+    {% else %}
+            <h1>Desculpe! Você precisa estar logado.</h1>
+            <br/><br/>
+            <a href="{% url 'login' %}"> Faça seu Login</a>
+            <br/><br/>
+            <a href="{% url 'home' %}"> Voltar para página inicial</a>
+            <br/><br/>
+    {% endif %}
+</div>
+{% endblock content%}

@@ -1,0 +1,23 @@
+{% extends 'eventos/base.html' %}
+{% block content %}
+
+    
+    {% if form.erros %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>Ocorreu um erro no seu cadastro...</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+
+    <div class="shadow p-4 mb-5 bg-body rounded">
+      <h1>Cadastro de Usuário</h1>
+      <br/><br/>
+      <form action="{% url 'register_user' %}" method=POST>
+          {% csrf_token %}
+
+          {{ form.as_p }}
+          <br/><br/>
+          <input type="submit" value="Submit" class="btn btn-secondary">        
+      </form>
+    </div>
+{% endblock content%}
