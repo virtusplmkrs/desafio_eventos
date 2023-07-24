@@ -4,7 +4,7 @@ Requisitos obrigatórios:
 - O seu projeto deve ser um sistema web. OK
 - O calendário deverá permitir ao usuário criar, editar e remover eventos. OK
 - Cada evento deverá possuir uma duração em dias. OK
-- Os eventos deverão ser dispostos no calendário de forma que fique claro a sua duração.
+- Os eventos deverão ser dispostos no calendário de forma que fique claro a sua duração. OK
 
 Requisitos facultativos:
 - Duração em horas.
@@ -104,3 +104,6 @@ no sistema com com o usuário e senha usado na instalçãoo do programa e va na 
 menu Area restrita.
 
 Viva lá vida!
+
+*********************************************************************************************************
+
